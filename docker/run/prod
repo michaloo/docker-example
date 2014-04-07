@@ -1,0 +1,9 @@
+#!/bin/bash
+
+docker run -i -t \
+    --rm \
+    -w /app \
+    -p 80:80 \
+    --entrypoint /bin/bash \
+    michaloo/docker-example \
+    $@

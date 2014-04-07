@@ -1,0 +1,11 @@
+#!/bin/bash
+
+VOLUME="${DOCKER_REMOTE_PATH}${PWD#${DOCKER_CLIENT_PATH}}/config/new:/config"
+
+docker run -i -t \
+    --rm \
+    -w /config \
+    -p 80:80 \
+    -v "$VOLUME" \
+    michaloo/docker-example:dev \
+    -c 'cp -R /etc/{nginx,php5,supervisor} .'

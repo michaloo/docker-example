@@ -1,0 +1,16 @@
+#!/bin/bash
+
+CONF_VOLUME="${DOCKER_REMOTE_PATH}${PWD#${DOCKER_CLIENT_PATH}}/config/dev"
+SRC_VOLUME="${DOCKER_REMOTE_PATH}${PWD#${DOCKER_CLIENT_PATH}}/:/app"
+
+
+docker run -i -t \
+    --rm \
+    -w /app \
+    -p 80:80 \
+    -v $SRC_VOLUME \
+    -v $CONF_VOLUME/nginx:/etc/nginx \
+    -v $CONF_VOLUME/php5:/etc/php5 \
+    -v $CONF_VOLUME/supervisor:/etc/supervisor \
+    michaloo/docker-example:dev \
+    $@
